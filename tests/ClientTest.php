@@ -59,6 +59,18 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('GuildWars2\Endpoints\Build', $instance);
 
         $response = $instance->getBuild();
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testColorsEndpoint()
+    {
+        $instance = $this->getEndpoint('colors');
+
+        $this->assertInstanceOf('GuildWars2\Endpoints\Colors', $instance);
+
+        $response = $instance->getAll();
+
         $this->assertEquals(200, $response->getStatusCode());
     }
 
