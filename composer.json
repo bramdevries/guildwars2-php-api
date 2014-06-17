@@ -1,0 +1,23 @@
+{
+    "name": "bramdevries/guildwars2-php-api",
+    "description": "Wrapper around the  Guild Wars 2 public API.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bram Devries",
+            "email": "bram_devries@2to1.be"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "GuildWars2\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "~4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "dev-master"
+    }
+}
