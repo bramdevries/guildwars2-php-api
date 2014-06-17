@@ -11,7 +11,7 @@ class Client
      */
     protected $options = array(
         "locale" => "en",
-        "version" => "v2",
+        "version" => "v1",
     );
 
     /**

@@ -20,13 +20,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testVersion ()
     {
-        $this->assertEquals("v2", $this->instance->getVersion());
+        $this->assertEquals("v1", $this->instance->getVersion());
 
         $instanceForV1 = new Client(array(
-            'version' => 'v1',
+            'version' => 'v2',
         ));
 
-        $this->assertEquals("v1", $instanceForV1->getVersion());
+        $this->assertEquals("v2", $instanceForV1->getVersion());
     }
 
     public function testLocale()
@@ -52,11 +52,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://api.guildwars2.com', $this->instance->getUrl());
     }
 
-    public function testEndpoint()
+    public function testBuildEndpoint()
     {
         $instance = $this->getEndpoint('build');
 
         $this->assertInstanceOf('GuildWars2\Endpoints\Build', $instance);
+
+        $response = $instance->getBuild();
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**

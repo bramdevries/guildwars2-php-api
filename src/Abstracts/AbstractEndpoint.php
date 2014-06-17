@@ -19,8 +19,26 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
     {
         $this->client = $client;
 
-        parent::__construct([
-            'base_url' => [$this->client->getUrl() . '/{version}', ['version' => $this->client->getVersion()]],
-        ]);
+        parent::__construct(array(
+            'base_url' => [$this->client->getUrl() . '/{version}/', ['version' => $this->client->getVersion()]],
+        ));
+    }
+
+    /**
+     * Get the response from the API endpoint
+     * @param string $endpoint
+     * @param array $options
+     * @return Array
+     */
+    public function getResponse($endpoint, $options = array())
+    {
+
+        if ($this->client->getVersion() == "v1") {
+            $endpoint .= ".json";
+        }
+
+        $response = $this->get($endpoint, $options);
+
+        return $response;
     }
 }
