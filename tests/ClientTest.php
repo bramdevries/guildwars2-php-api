@@ -46,4 +46,29 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals("fr", $instanceInFrench->getLocale());
     }
+
+    public function testUrl()
+    {
+        $this->assertEquals('http://api.guildwars2.com', $this->instance->getUrl());
+    }
+
+    public function testEndpoint()
+    {
+        $instance = $this->getEndpoint('build');
+
+        $this->assertInstanceOf('GuildWars2\Endpoints\Build', $instance);
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testEndpointNotFound()
+    {
+        $this->getEndpoint('Fake');
+    }
+
+    private function getEndpoint($api)
+    {
+        return $this->instance->api($api);
+    }
 }

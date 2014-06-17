@@ -15,11 +15,42 @@ class Client
     );
 
     /**
+     * Base URL
+     * @var string
+     */
+    protected $url = "http://api.guildwars2.com";
+
+    /**
      * Create a new instance of Client
      */
     public function __construct($options = array())
     {
         $this->options = array_merge($this->options, $options);
+    }
+
+    /**
+     * Entry point to get an endpoint
+     * @param  String $endpoint
+     * @return AbstractEndpoint
+     */
+    public function api($endpoint)
+    {
+        $instance = '\GuildWars2\Endpoints\\' . ucfirst($endpoint);
+
+        if (class_exists($instance)) {
+            return new $instance($this);
+        } else {
+            throw new \Exception('Endpoint could not be found');
+        }
+    }
+
+    /**
+     * Return the full URL.
+     * @return String
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
