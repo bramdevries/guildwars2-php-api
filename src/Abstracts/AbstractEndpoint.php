@@ -33,12 +33,14 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
     public function getResponse($endpoint, $options = array())
     {
 
-        if ($this->client->getVersion() == "v1") {
-            $endpoint .= ".json";
+        if ($this->client->getVersion() == 'v1') {
+            $endpoint .= '.json';
         }
 
-        $response = $this->get($endpoint, $options);
+        $options['query'] = [
+            'lang' => $this->client->getLocale(),
+        ];
 
-        return $response;
+        return $this->get($endpoint, $options)->json();
     }
 }

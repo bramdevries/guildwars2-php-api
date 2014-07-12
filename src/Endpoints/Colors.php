@@ -6,7 +6,11 @@ use GuildWars2\Abstracts\AbstractEndpoint;
 
 class Colors extends AbstractEndpoint
 {
-    public function getAll()
+    /**
+     * Returns all dyes in the game, including localized names and their color component information.
+     * @return Array
+     */
+    public function colors()
     {
         return $this->getResponse('colors');
     }
