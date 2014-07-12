@@ -10,7 +10,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->instance = new Client();
+        $this->instance = new Client(array(
+            'testing' => true,
+        ));
     }
 
     public function testInstance()
@@ -52,26 +54,46 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://api.guildwars2.com', $this->instance->getUrl());
     }
 
-    public function testBuildEndpoint()
+    public function testEndpoints()
     {
-        $instance = $this->getEndpoint('build');
+        // Load a fixture of endpoints.
+        $endpoints = json_decode(file_get_contents("tests/endpoints.json"), true);
 
-        $this->assertInstanceOf('GuildWars2\Endpoints\Build', $instance);
+        foreach ($endpoints as $endpoint) {
 
-        $response = $instance->getBuild();
+            // Create and instance for the endpoint.
+            $instance = $this->getEndpoint($endpoint['endpoint']);
 
-        $this->assertEquals(200, $response->getStatusCode());
+            // Test if the correct instance has been created.
+            $expectedInstance = 'GuildWars2\Endpoints\\' . ucfirst($endpoint['endpoint']);
+            $this->assertInstanceOf($expectedInstance, $instance);
+
+            // Set the parameters
+            $params = (isset($endpoint['parameters'])) ? $endpoint['parameters'] : array();
+
+            $response = call_user_func_array(array($instance, $endpoint['method']), $params);
+
+            // Test if the request was succesfull.
+            $this->assertEquals(200, $response->getStatusCode());
+        }
     }
 
-    public function testColorsEndpoint()
+    public function testRenderService()
     {
-        $instance = $this->getEndpoint('colors');
+        $files = $this->getEndpoint('files');
 
-        $this->assertInstanceOf('GuildWars2\Endpoints\Colors', $instance);
+        $url = $files->file('943538394A94A491C8632FBEF6203C2013443555', 102478);
 
-        $response = $instance->getAll();
+        $this->assertEquals("https://render.guildwars2.com/file/943538394A94A491C8632FBEF6203C2013443555/102478.png", $url);
+    }
 
-        $this->assertEquals(200, $response->getStatusCode());
+    public function testResponseIsArray()
+    {
+        $instance = new Client();
+
+        $response = $instance->api('build')->build();
+
+        $this->assertTrue(is_array($response));
     }
 
     /**

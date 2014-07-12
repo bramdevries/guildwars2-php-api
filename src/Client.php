@@ -10,15 +10,16 @@ class Client
      * @var Array
      */
     protected $options = array(
-        "locale" => "en",
-        "version" => "v1",
+        'locale' => 'en',
+        'version' => 'v1',
+        'testing' => false,
     );
 
     /**
      * Base URL
      * @var string
      */
-    protected $url = "http://api.guildwars2.com";
+    protected $url = 'http://api.guildwars2.com';
 
     /**
      * Create a new instance of Client
@@ -75,8 +76,18 @@ class Client
      * Set the language to return results in.
      * @param string $locale
      */
-    public function setLocale($locale = "en")
+    public function setLocale($locale = 'en')
     {
         $this->options['locale'] = $locale;
+    }
+
+    /**
+     * Get the testing option
+     *
+     * @return boolean [description]
+     */
+    public function isTesting()
+    {
+        return $this->options['testing'];
     }
 }

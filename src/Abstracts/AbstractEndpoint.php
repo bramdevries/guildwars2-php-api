@@ -19,11 +19,20 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
     protected $options = array();
 
     /**
+     * Flag to determine if the instance is created via tests.
+     *
+     * @var boolean
+     */
+    protected $testing = false;
+
+    /**
      * @param Client $client
      */
     public function __construct (Client $client)
     {
         $this->client = $client;
+
+        $this->testing = $this->client->isTesting();
 
         $this->options = array(
             'query' => array(
@@ -53,6 +62,13 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
 
         $options = array_merge($this->options, $options);
 
-        return $this->get($endpoint, $options)->json();
+        $response = $this->get($endpoint, $options);
+
+        // For tests we want the entire response object.
+        if ($this->testing) {
+            return $response;
+        }
+
+        return $response->json();
     }
 }
