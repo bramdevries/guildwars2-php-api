@@ -13,11 +13,23 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
     protected $client;
 
     /**
-     * @param Client $client [description]
+     * Default set of options to pass with the request.
+     * @var array
+     */
+    protected $options = array();
+
+    /**
+     * @param Client $client
      */
     public function __construct (Client $client)
     {
         $this->client = $client;
+
+        $this->options = array(
+            'query' => array(
+                'lang' => $this->client->getLocale(),
+            ),
+        );
 
         parent::__construct(array(
             'base_url' => [$this->client->getUrl() . '/{version}/', ['version' => $this->client->getVersion()]],
@@ -37,9 +49,7 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
             $endpoint .= '.json';
         }
 
-        $options['query'] = [
-            'lang' => $this->client->getLocale(),
-        ];
+        $options = array_merge($this->options, $options);
 
         return $this->get($endpoint, $options)->json();
     }
