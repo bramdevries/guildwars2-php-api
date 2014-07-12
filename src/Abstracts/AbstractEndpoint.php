@@ -32,7 +32,9 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
         );
 
         parent::__construct(array(
-            'base_url' => [$this->client->getUrl() . '/{version}/', ['version' => $this->client->getVersion()]],
+            'base_url' => array($this->client->getUrl() . '/{version}/', array(
+                'version' => $this->client->getVersion()
+            )),
         ));
     }
 

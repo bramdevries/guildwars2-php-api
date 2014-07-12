@@ -24,9 +24,9 @@ class Wvw extends AbstractEndpoint
      */
     public function match($match_id)
     {
-        return $this->getResponse('wvw/match_details', [
+        return $this->getResponse('wvw/match_details', array(
             'query' => array('match_id' => $match_id),
-        ]);
+        ));
     }
 
     /**
