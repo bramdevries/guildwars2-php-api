@@ -61,4 +61,14 @@ class Map extends AbstractEndpoint
             ),
         ));
     }
+
+    /**
+     * Returns an unordered list of the map names.
+     *
+     * @return Array
+     */
+    public function names()
+    {
+        return $this->getResponse('map_names');
+    }
 }

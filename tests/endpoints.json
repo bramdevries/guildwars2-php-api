@@ -4,6 +4,7 @@
     {"endpoint":"files", "method": "files"},
     {"endpoint":"map", "method": "continents"},
     {"endpoint":"map", "method": "maps"},
+    {"endpoint":"map", "method": "names"},
     {"endpoint":"map", "method": "maps", "parameters": ["15"]},
     {"endpoint":"map", "method": "floor", "parameters": ["1", "1"]},
     {"endpoint":"wvw", "method": "matches"},
@@ -16,5 +17,8 @@
     {"endpoint":"items", "method": "recipes"},
     {"endpoint":"items", "method": "recipe", "parameters": [1275]},
     {"endpoint":"items", "method": "skins"},
-    {"endpoint":"items", "method": "skin", "parameters": [1350]}
+    {"endpoint":"items", "method": "skin", "parameters": [1350]},
+    {"endpoint":"events", "method": "names"},
+    {"endpoint":"events", "method": "event", "parameters": ["4B212997-CEF0-4B2C-91BE-B787A6A32DE9"]},
+    {"endpoint":"events", "method": "event"}
 ]
