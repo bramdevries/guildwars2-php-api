@@ -33,6 +33,7 @@ $client->api('build')->build();
 |  **build** |  build |  *none* | `	$client->api('build')->build()`|
 |  **colors** |  colors |  *none* | `	$client->api('colors')->colors()`|
 |  **files** |  files |  *none* | `	$client->api('files')->files()`|
+|  **files** |  file |  string signature, int file_id | `	$client->api('files')->file(file('943538394A94A491C8632FBEF6203C2013443555', 102478))`|
 |  **map** |  continents |  *none* | `	$client->api('map')->continents()`|
 |  **map** |  maps |  *none* | `	$client->api('map')->maps()`|
 |  **map** |  mapes |  (optional) int map_id| `	$client->api('map')->maps(15)`|
@@ -52,13 +53,6 @@ $client->api('build')->build();
 | **events** | names | *none* | `$client->api('events')->names()`|
 | **events** | event | (optional) string event_id | `$client->api('events')->event("4B212997-CEF0-4B2C-91BE-B787A6A32DE9")`|
 
-## Using the render service
-
-With the render service you can transform a file into a usable url. You pass the signature and file id.
-
-```php
-$client->api('files')->file('943538394A94A491C8632FBEF6203C2013443555', 102478)
-```
 
 
 
