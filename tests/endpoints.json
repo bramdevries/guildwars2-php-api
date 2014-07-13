@@ -10,5 +10,11 @@
     {"endpoint":"wvw", "method": "objectives"},
     {"endpoint":"wvw", "method": "match", "parameters": ["2-2"]},
     {"endpoint":"guild", "method": "byId", "parameters": ["75FD83CF-0C45-4834-BC4C-097F93A487AF"]},
-    {"endpoint":"guild", "method": "byName", "parameters": ["Veterans Of Lions Arch"]}
+    {"endpoint":"guild", "method": "byName", "parameters": ["Veterans Of Lions Arch"]},
+    {"endpoint":"items", "method": "items"},
+    {"endpoint":"items", "method": "item", "parameters": [28445]},
+    {"endpoint":"items", "method": "recipes"},
+    {"endpoint":"items", "method": "recipe", "parameters": [1275]},
+    {"endpoint":"items", "method": "skins"},
+    {"endpoint":"items", "method": "skin", "parameters": [1350]}
 ]
