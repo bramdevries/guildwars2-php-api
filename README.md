@@ -15,15 +15,15 @@ You can also set the locale.
 
 
 ```php
-	$client = new GuildWars2\Client([
-    	'locale' => 'fr',
-	]);	
+$client = new GuildWars2\Client([
+	'locale' => 'fr',
+]);	
 ```
 
 Once you have an instance you have access to all the endpoints.
 
 ```php
-	$client->api('build')->build();
+$client->api('build')->build();
 ```
 
 ## Available methods
