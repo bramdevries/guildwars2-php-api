@@ -29,7 +29,8 @@ class Map extends AbstractEndpoint
     /**
      * Returns details about a map in the game, including details about floor and translation data on how to translate between world coordinates and map coordinates.
      *
-     * @param  $map_id The map_id, defaults to all maps if no parameter is given
+     * @param  string|null $map_id The map_id, defaults to all maps if no parameter is given
+	 *
      * @return Array
      */
     public function maps($map_id = null)

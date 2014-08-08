@@ -2,6 +2,11 @@
 
 namespace GuildWars2;
 
+/**
+ * Class Client
+ *
+ * @package GuildWars2
+ */
 class Client
 {
 
@@ -23,6 +28,8 @@ class Client
 
     /**
      * Create a new instance of Client
+	 *
+	 * @param array $options
      */
     public function __construct($options = array())
     {
@@ -31,8 +38,11 @@ class Client
 
     /**
      * Entry point to get an endpoint
+	 *
      * @param  String $endpoint
+	 *
      * @return AbstractEndpoint
+	 * @throws \Exception
      */
     public function api($endpoint)
     {
@@ -47,6 +57,7 @@ class Client
 
     /**
      * Return the full URL.
+	 *
      * @return String
      */
     public function getUrl()
@@ -56,6 +67,7 @@ class Client
 
     /**
      * Get the version of the API.
+	 *
      * @return String
      */
     public function getVersion()
@@ -65,6 +77,7 @@ class Client
 
     /**
      * Get the language to return results in
+	 *
      * @return String
      */
     public function getLocale()
@@ -74,6 +87,7 @@ class Client
 
     /**
      * Set the language to return results in.
+	 *
      * @param string $locale
      */
     public function setLocale($locale = 'en')

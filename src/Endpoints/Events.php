@@ -29,7 +29,7 @@ class Events extends AbstractEndpoint
     /**
      * Returns static details about the event
      *
-     * @param  string $event_id
+     * @param  string|null $event_id
      * @return Array
      */
     public function event($event_id = null)

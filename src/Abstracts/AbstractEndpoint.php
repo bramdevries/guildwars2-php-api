@@ -4,11 +4,16 @@ namespace GuildWars2\Abstracts;
 
 use GuildWars2\Client;
 
+/**
+ * Class AbstractEndpoint
+ *
+ * @package GuildWars2\Abstracts
+ */
 abstract class AbstractEndpoint extends \GuzzleHttp\Client
 {
     /**
      * An instance of the API client.
-     * @var GuildWars2\Client
+     * @var \GuildWars2\Client
      */
     protected $client;
 
