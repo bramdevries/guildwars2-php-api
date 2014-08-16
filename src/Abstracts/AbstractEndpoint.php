@@ -65,9 +65,9 @@ abstract class AbstractEndpoint extends \GuzzleHttp\Client
             $endpoint .= '.json';
         }
 
-        $options = array_merge($this->options, $options);
+        $options = array_merge_recursive($this->options, $options);
 
-        $response = $this->get($endpoint, $options);
+		$response = $this->get($endpoint, $options);
 
         // For tests we want the entire response object.
         if ($this->testing) {
