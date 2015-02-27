@@ -2,106 +2,55 @@
 
 namespace GuildWars2;
 
+use GuzzleHttp\Client as AbstractClient;
+
 /**
  * Class Client
  *
+ * @method Requests\Build build()
+ *
+ * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
  */
-class Client
+class Client extends AbstractClient
 {
+	/**
+	 * @var array
+	 */
+	protected $config = [
+		'base_url' => 'https://api.guildwars2.com/v2/'
+	];
 
-    /**
-     * An array of options
-     * @var Array
-     */
-    protected $options = array(
-        'locale' => 'en',
-        'version' => 'v1',
-        'testing' => false,
-    );
+	/**
+	 * @param array $config
+	 */
+	public function __construct(array $config = [])
+	{
+		parent::__construct(array_merge_recursive($config, $this->config));
+	}
 
-    /**
-     * Base URL
-     * @var string
-     */
-    protected $url = 'http://api.guildwars2.com';
+	/**
+	 * @param $name
+	 */
+	public function api($name)
+	{
+		$className = 'GuildWars2\Requests\\' . ucfirst($name);
 
-    /**
-     * Create a new instance of Client
+		if (class_exists($className)) {
+			return new $className($this);
+		}
+
+		throw new \InvalidArgumentException(sprintf('%s does not exist', $name));
+	}
+
+	/**
+	 * @param $name
+	 * @param $arguments
 	 *
-	 * @param array $options
-     */
-    public function __construct($options = array())
-    {
-        $this->options = array_merge($this->options, $options);
-    }
-
-    /**
-     * Entry point to get an endpoint
-	 *
-     * @param  String $endpoint
-	 *
-     * @return AbstractEndpoint
-	 * @throws \Exception
-     */
-    public function api($endpoint)
-    {
-        $instance = '\GuildWars2\Endpoints\\' . ucfirst($endpoint);
-
-        if (class_exists($instance)) {
-            return new $instance($this);
-        } else {
-            throw new \Exception('Endpoint could not be found');
-        }
-    }
-
-    /**
-     * Return the full URL.
-	 *
-     * @return String
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Get the version of the API.
-	 *
-     * @return String
-     */
-    public function getVersion()
-    {
-        return $this->options['version'];
-    }
-
-    /**
-     * Get the language to return results in
-	 *
-     * @return String
-     */
-    public function getLocale()
-    {
-        return $this->options['locale'];
-    }
-
-    /**
-     * Set the language to return results in.
-	 *
-     * @param string $locale
-     */
-    public function setLocale($locale = 'en')
-    {
-        $this->options['locale'] = $locale;
-    }
-
-    /**
-     * Get the testing option
-     *
-     * @return boolean [description]
-     */
-    public function isTesting()
-    {
-        return $this->options['testing'];
-    }
+	 * @return mixed
+	 */
+	public function __call($name, $arguments)
+	{
+		return $this->api($name);
+	}
 }
