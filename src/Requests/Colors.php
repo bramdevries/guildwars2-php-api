@@ -1,0 +1,26 @@
+<?php
+
+namespace GuildWars2\Requests;
+
+use GuildWars2\Abstracts\AbstractRequest;
+
+class Colors extends AbstractRequest
+{
+
+	/**
+	 * @param string|array $ids
+	 *
+	 * @return mixed
+	 */
+	public function getColors($ids = 'all')
+	{
+		if (is_array($ids)) {
+			$ids = implode(',', $ids);
+		}
+
+		return $this->get('colors', [
+			'ids' => $ids,
+		]);
+	}
+
+} 

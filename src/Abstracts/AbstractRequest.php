@@ -40,7 +40,7 @@ abstract class AbstractRequest
 	 *
 	 * @return mixed
 	 */
-	public function post($url, $params = array())
+	protected function post($url, $params = array())
 	{
 		$response = $this->request('post', $url, [
 			'body' => $params
@@ -55,7 +55,7 @@ abstract class AbstractRequest
 	 *
 	 * @return mixed
 	 */
-	public function get($url, $params = array())
+	protected function get($url, $params = array())
 	{
 		$response = $this->request('get', $url, [
 			'query' => $params
