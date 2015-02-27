@@ -14,12 +14,8 @@ class Colors extends AbstractRequest
 	 */
 	public function getColors($ids = 'all')
 	{
-		if (is_array($ids)) {
-			$ids = implode(',', $ids);
-		}
-
 		return $this->get('colors', [
-			'ids' => $ids,
+			'ids' => $this->expandIds($ids),
 		]);
 	}
 

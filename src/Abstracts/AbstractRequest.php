@@ -63,4 +63,21 @@ abstract class AbstractRequest
 
 		return $response->json();
 	}
+
+	// Helpers
+
+	/**
+	 * @param $ids
+	 *
+	 * @return string
+	 */
+	protected function expandIds($ids)
+	{
+		if (is_array($ids)) {
+			$ids = implode(',', $ids);
+			return $ids;
+		}
+
+		return $ids;
+	}
 }

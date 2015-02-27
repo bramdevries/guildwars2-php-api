@@ -9,6 +9,7 @@ use GuzzleHttp\Client as AbstractClient;
  *
  * @method Requests\Build build()
  * @method Requests\Colors colors()
+ * @method Requests\Commerce commerce()
  *
  * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
