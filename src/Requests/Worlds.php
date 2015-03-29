@@ -11,7 +11,7 @@ class Worlds extends AbstractRequest
 	 *
 	 * @return mixed
 	 */
-	public function getWorlds($ids = 'all')
+	public function find($ids = 'all')
 	{
 		return $this->get('worlds', [
 			'ids' => $this->expandIds($ids),

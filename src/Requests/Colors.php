@@ -12,7 +12,7 @@ class Colors extends AbstractRequest
 	 *
 	 * @return mixed
 	 */
-	public function getColors($ids = 'all')
+	public function find($ids = 'all')
 	{
 		return $this->get('colors', [
 			'ids' => $this->expandIds($ids),
