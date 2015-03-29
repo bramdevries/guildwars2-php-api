@@ -13,6 +13,11 @@ abstract class AbstractRequest
 	protected $client;
 
 	/**
+	 * @var string
+	 */
+	protected $version = 'v2';
+
+	/**
 	 * @param Client $client
 	 */
 	public function __construct(Client $client)
@@ -30,7 +35,7 @@ abstract class AbstractRequest
 	 */
 	protected function request($verb, $url, $params = array())
 	{
-		$response = $this->client->$verb($url, $params);
+		$response = $this->client->$verb($this->version.'/'.$url, $params);
 		$this->client->setResponse($response);
 
 		return $response;
@@ -77,6 +82,7 @@ abstract class AbstractRequest
 	{
 		if (is_array($ids)) {
 			$ids = implode(',', $ids);
+
 			return $ids;
 		}
 
@@ -91,6 +97,7 @@ abstract class AbstractRequest
 	public function setPageSize($size = 25)
 	{
 		$this->client->setDefaultOption('query/page_size', $size);
+
 		return $this;
 	}
 
@@ -102,6 +109,7 @@ abstract class AbstractRequest
 	public function setPage($page = 1)
 	{
 		$this->client->setDefaultOption('query/page', $page);
+
 		return $this;
 	}
 }

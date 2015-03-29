@@ -16,6 +16,7 @@ use GuzzleHttp\Client as AbstractClient;
  * @method Requests\Skins skins()
  * @method Requests\Continents continents()
  * @method Requests\Maps maps()
+ * @method Requests\Wvw wvw()
  *
  * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
@@ -31,7 +32,7 @@ class Client extends AbstractClient
 	 * @var array
 	 */
 	protected $config = [
-		'base_url' => 'https://api.guildwars2.com/v2/'
+		'base_url' => 'https://api.guildwars2.com/'
 	];
 
 	/**
