@@ -39,6 +39,14 @@ class Client extends AbstractClient
 	}
 
 	/**
+	 * @param $lang
+	 */
+	public function setLanguage($lang)
+	{
+		$this->setDefaultOption('query/lang', $lang);
+	}
+
+	/**
 	 * @param $name
 	 */
 	public function api($name)
