@@ -11,6 +11,7 @@ use GuzzleHttp\Client as AbstractClient;
  * @method Requests\Colors colors()
  * @method Requests\Commerce commerce()
  * @method Requests\Worlds worlds()
+ * @method Requests\Quaggans quaggans()
  *
  * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
