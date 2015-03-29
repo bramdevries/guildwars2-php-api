@@ -14,6 +14,7 @@ use GuzzleHttp\Client as AbstractClient;
  * @method Requests\Quaggans quaggans()
  * @method Requests\Items items()
  * @method Requests\Recipes recipes()
+ * @method Requests\Skins skins()
  *
  * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
