@@ -20,7 +20,6 @@ abstract class AbstractRequest
 		$this->client = $client;
 	}
 
-
 	/**
 	 * @param       $verb
 	 * @param       $url
@@ -31,7 +30,10 @@ abstract class AbstractRequest
 	 */
 	protected function request($verb, $url, $params = array())
 	{
-		return $this->client->$verb($url, $params);
+		$response = $this->client->$verb($url, $params);
+		$this->client->setResponse($response);
+
+		return $response;
 	}
 
 	/**
@@ -79,5 +81,27 @@ abstract class AbstractRequest
 		}
 
 		return $ids;
+	}
+
+	/**
+	 * @param int $size
+	 *
+	 * @return $this
+	 */
+	public function setPageSize($size = 25)
+	{
+		$this->client->setDefaultOption('query/page_size', $size);
+		return $this;
+	}
+
+	/**
+	 * @param int $page
+	 *
+	 * @return $this
+	 */
+	public function setPage($page = 1)
+	{
+		$this->client->setDefaultOption('query/page', $page);
+		return $this;
 	}
 }

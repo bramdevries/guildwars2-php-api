@@ -6,7 +6,6 @@ use GuzzleHttp\Client as AbstractClient;
 
 /**
  * Class Client
- *
  * @method Requests\Build build()
  * @method Requests\Colors colors()
  * @method Requests\Commerce commerce()
@@ -23,6 +22,11 @@ use GuzzleHttp\Client as AbstractClient;
  */
 class Client extends AbstractClient
 {
+	/**
+	 * @var
+	 */
+	protected $response;
+
 	/**
 	 * @var array
 	 */
@@ -51,13 +55,34 @@ class Client extends AbstractClient
 	 */
 	public function api($name)
 	{
-		$className = 'GuildWars2\Requests\\' . ucfirst($name);
+		$className = 'GuildWars2\Requests\\'.ucfirst($name);
 
 		if (class_exists($className)) {
 			return new $className($this);
 		}
 
 		throw new \InvalidArgumentException(sprintf('%s does not exist', $name));
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getPagination()
+	{
+		return [
+			'page_size'     => $this->response->getHeader('X-Page-Size'),
+			'total_pages'   => $this->response->getHeader('X-Page-Total'),
+			'results'       => $this->response->getHeader('X-Result-Count'),
+			'results_total' => $this->response->getHeader('X-Result-Total'),
+		];
+	}
+
+	/**
+	 * @param mixed $response
+	 */
+	public function setResponse($response)
+	{
+		$this->response = $response;
 	}
 
 	/**
