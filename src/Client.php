@@ -15,6 +15,7 @@ use GuzzleHttp\Client as AbstractClient;
  * @method Requests\Items items()
  * @method Requests\Recipes recipes()
  * @method Requests\Skins skins()
+ * @method Requests\Continents continents()
  *
  * @author  Bram Devries <bram@madewithlove.be>
  * @package GuildWars2
